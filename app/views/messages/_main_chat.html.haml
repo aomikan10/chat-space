@@ -1,0 +1,40 @@
+%body
+  .main-messages
+    .main-messages-header
+      .main-leftbox
+        .group-name-chat 
+          mika
+        .member-name 
+          Member : mika
+      = link_to "#", class:"edit-btn " do
+        Edit
+    .main-messages-body
+      .name-date
+        .main-username
+          mika
+        .main-date
+          2020/07/06(Mon)17:20:30
+      .main-message
+        浮き輪
+      .name-date
+        .main-username
+          mika
+        .main-date
+          2020/07/06(Mon)17:20:30
+      .main-message
+        浮き輪
+      .name-date
+        .main-username
+          mika
+        .main-date
+          2020/07/06(Mon)17:20:30
+      .main-message
+        浮き輪
+    .main-messages-footer
+      %form.Form-message
+        .Form
+          %input{"placeholder": "type a message", "type": "text", class:'Form-textbox'}
+          %label{class:'Form-pict'}
+            = icon('far', 'image', class:'Form-pict__pic')
+            %input{type: "file", class:"Form-pict__Hidden"}
+        %input{"type": "submit", "value": "Send", class:"Form-btn"}
