@@ -33,10 +33,10 @@
         background-color: #253141;
 
         .icon-box {
-          width: 60px;
-
+          width: 40px;
+          justify-content: end;
           &__icon {
-            @include justify;
+            display: flex;
             list-style: none;
             
             &--icons {
@@ -97,6 +97,7 @@
         @include height_width(40px,72px);
         margin: 28px 40px 0 0;
         padding: 0 20px;
+        text-decoration: none;
         line-height: 40px;
         border: 1px solid #38aef0;
         color: #38aef0;
