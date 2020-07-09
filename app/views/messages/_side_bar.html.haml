@@ -14,10 +14,10 @@
                 = icon('fas', 'cog')
     .side-bar-group-lists
       - current_user.groups.each do |group|
-        .Group
+        .group
           = link_to '#' do
-            .Group__name
+            .groupname
               = group.name
-            .Group__message
+            .status
               メッセージはまだありません
-
+            
