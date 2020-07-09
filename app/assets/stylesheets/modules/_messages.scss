@@ -52,19 +52,23 @@
       height: calc(100vh - 100px);
       padding: 20px;
       background-color: #2f3e51;
+      
+      .group {
+        text-decoration: none;
 
-      .groupname {
-        margin-bottom: 5px;
-        color: white;
-        font-weight: bold;
-        font-size: 15px;
-      }
+        .groupname {
+          margin-bottom: 5px;
+          color: white;
+          font-weight: bold;
+          font-size: 15px;
+        }
 
-      .status {
-        margin-bottom: 40px;
-        color: white;
-        font-weight: bold;
-        font-size: 11px; 
+        .status {
+          margin-bottom: 40px;
+          color: white;
+          font-weight: bold;
+          font-size: 11px; 
+        }
       }
     }
 }
