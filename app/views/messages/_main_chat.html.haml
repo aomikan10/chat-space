@@ -3,37 +3,22 @@
     .main-messages-header
       .main-leftbox
         .group-name-chat 
-          mika
-        .member-name 
-          Member : mika
-      %input{value: "Edit", "type": "submit", class:'edit-btn'}
-    .main-messages-body
-      .name-date
-        .main-username
-          mika
-        .main-date
-          2020/07/06(Mon)17:20:30
-      .main-message
-        浮き輪
-      .name-date
-        .main-username
-          mika
-        .main-date
-          2020/07/06(Mon)17:20:30
-      .main-message
-        浮き輪
-      .name-date
-        .main-username
-          mika
-        .main-date
-          2020/07/06(Mon)17:20:30
-      .main-message
-        浮き輪
+          = @group.name
+        %ul.member-name 
+          %li member :
+          - @group.users.each do |user|
+            %li.user-name
+              = user.name
+      = link_to edit_group_path(@group) do
+        .edit-btn Edit
+    .MessageField
+      = render @messages
     .main-messages-footer
-      %form.Form-message
-        .Form
-          %input{"placeholder": "type a message", "type": "text", class:'Form-textbox'}
-          %label{class:'Form-pict'}
-            = icon('far', 'image', class:'Form-pict__pic')
-            %input{type: "file", class:"Form-pict__Hidden"} 
-        %input{"type": "submit", "value": "Send", class:"Form-btn"}
+      .Form-message
+        = form_with model: [@group, @message], html: {class: "Form"}, local: true do |f|
+          .Form
+            = f.text_field :content, class:'Form-textbox', placeholder: 'type a message'
+            = f.label :image, class: 'Form-pict' do
+              = icon('far', 'image', class: 'Form-pict__pic')
+              = f.file_field :image, class: 'Form-pict__Hidden'
+          = f.submit 'Send', class:'Form-btn'

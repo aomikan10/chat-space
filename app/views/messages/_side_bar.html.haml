@@ -5,19 +5,19 @@
         .side-header-box__user-name
           = current_user.name
         .icon-box
-          %ul.icon-box__icon
-            %li.icon-box__icon--icons
+          %ul.icon
+            %li.icon__icons
               = link_to new_group_path do
                 = icon('fas', 'edit')
-            %li.icon-box__icon--icons
+            %li.icon__icons
               = link_to edit_user_path(current_user) do
                 = icon('fas', 'cog')
     .side-bar-group-lists
       - current_user.groups.each do |group|
         .group
-          = link_to '#' do
+          = link_to group_messages_path(group) do
             .groupname
               = group.name
             .status
-              メッセージはまだありません
+              = group.show_last_message
             
