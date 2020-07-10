@@ -54,7 +54,6 @@
         .groupname {
           margin-bottom: 5px;
           color: white;
-          font-weight: bold;
           font-size: 15px;
           text-decoration: none;
         }
@@ -115,9 +114,9 @@
     .MessageField {
       height: calc(100vh - 190px);
       overflow: scroll;
+      background-color: #fafafa;
 
       .main-messages-body {
-        background-color: #fafafa;
 
           .name-date {
             display: flex;
