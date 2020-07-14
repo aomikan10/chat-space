@@ -15,9 +15,9 @@
       = render @messages
     .main-messages-footer
       .Form-message
-        = form_with model: [@group, @message], html: {class: "Form"}, local: true do |f|
+        = form_with model: [@group, @message], html: {class: "Form"}, local: true, id: "Form" do |f|
           .Form
-            = f.text_field :content, class:'Form-textbox', placeholder: 'type a message'
+            = f.text_field :content, class:'Form-textbox', placeholder: 'type a message', id:'Form-textbox'
             = f.label :image, class: 'Form-pict' do
               = icon('far', 'image', class: 'Form-pict__pic')
               = f.file_field :image, class: 'Form-pict__Hidden'
