@@ -39,10 +39,14 @@ $(function(){
       return html;
     };
   }
+
   $('.Form').on('submit', function(e) {
     e.preventDefault();
     let formData = new FormData(this);
     let url = $(this).attr('action');
+    $('.Form-btn').removeAttr('data-disable-with');
+    var fd = new FormData($this.get(0));
+
     $.ajax({
       url: url,
       type: "POST",  
@@ -54,8 +58,11 @@ $(function(){
     .done(function(data){
       let html = buildHTML(data);
       $('.MessageField').append(html);
-      $('.MessageField').animate({ scrollTop: $('.MessageField')[0].scrollHeight});      
+      $('.MessageField').animate({ scrollTop: $('.MessageField')[0].scrollHeight});     
       $('form')[0].reset();
     })
+    .fail(function() {
+      alert("メッセージ送信に失敗しました");
+    });
   });
 });
