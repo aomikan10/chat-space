@@ -5,7 +5,7 @@ $(function(){
         `<div class="main-messages-body">
           <div class="name-date">
             <div class="main-username">
-              ${message.user.name}
+              ${message.user_name}
             </div>
             <div class="main-date">
               ${message.created_at}
@@ -24,7 +24,7 @@ $(function(){
       `<div class="main-messages-body">
       <div class="name-date">
         <div class="main-username">
-          ${message.user.name}
+          ${message.user_name}
         </div>
         <div class="main-date">
           ${message.created_at}
@@ -44,8 +44,6 @@ $(function(){
     e.preventDefault();
     let formData = new FormData(this);
     let url = $(this).attr('action');
-    $('.Form-btn').removeAttr('data-disable-with');
-    var fd = new FormData($this.get(0));
 
     $.ajax({
       url: url,
@@ -60,6 +58,7 @@ $(function(){
       $('.MessageField').append(html);
       $('.MessageField').animate({ scrollTop: $('.MessageField')[0].scrollHeight});     
       $('form')[0].reset();
+      $('.Form-btn').removeAttr('disabled');
     })
     .fail(function() {
       alert("メッセージ送信に失敗しました");
