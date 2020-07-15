@@ -1,8 +1,8 @@
 $(function(){
   function buildHTML(message){
-    if (message.image) {
+    if ( message.image ) {
       let html =
-        `<div class="main-messages-body">
+        `<div class="main-messages-body" data-message-id=${message.id}>
           <div class="name-date">
             <div class="main-username">
               ${message.user_name}
@@ -21,33 +21,32 @@ $(function(){
       return html;
     } else {
       let html =
-      `<div class="main-messages-body">
-      <div class="name-date">
-        <div class="main-username">
-          ${message.user_name}
+      `<div class="main-messages-body" data-message-id=${message.id}>
+        <div class="name-date">
+          <div class="main-username">
+            ${message.user_name}
+          </div>
+          <div class="main-date">
+            ${message.created_at}
+          </div>
         </div>
-        <div class="main-date">
-          ${message.created_at}
+        <div class="main-message">
+          <p class="Message__content">
+            ${message.content}
+          </p>
         </div>
-      </div>
-      <div class="main-message">
-        <p class="Message__content">
-          ${message.content}
-        </p>
-      </div>
-    </div>`
+      </div>`
       return html;
     };
   }
 
-  $('.Form').on('submit', function(e) {
+  $('.Form').on('submit', function(e){
     e.preventDefault();
     let formData = new FormData(this);
     let url = $(this).attr('action');
-
     $.ajax({
       url: url,
-      type: "POST",  
+      type: "POST",
       data: formData,
       dataType: 'json',
       processData: false,
@@ -55,13 +54,14 @@ $(function(){
     })
     .done(function(data){
       let html = buildHTML(data);
-      $('.MessageField').append(html);
-      $('.MessageField').animate({ scrollTop: $('.MessageField')[0].scrollHeight});     
+      $('.MessageField').append(html);      
       $('form')[0].reset();
-      $('.Form-btn').removeAttr('disabled');
+      $('.MessageField').animate({ scrollTop: $('.MessageField')[0].scrollHeight});
+      $('.Form__submit').prop("disabled", false);
     })
     .fail(function() {
       alert("メッセージ送信に失敗しました");
+      $('.Form__submit').prop("disabled", false);
     });
   });
 });
