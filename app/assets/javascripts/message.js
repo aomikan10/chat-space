@@ -45,23 +45,22 @@ $(function(){
     let formData = new FormData(this);
     let url = $(this).attr('action');
 
-    $.ajax({
-      url: url,
-      type: "POST",  
-      data: formData,
-      dataType: 'json',
-      processData: false,
-      contentType: false
-    })
-    .done(function(data){
-      let html = buildHTML(data);
-      $('.MessageField').append(html);
-      $('.MessageField').animate({ scrollTop: $('.MessageField')[0].scrollHeight});     
-      $('form')[0].reset();
-      $('.Form-btn').removeAttr('disabled');
-    })
-    .fail(function() {
-      alert("メッセージ送信に失敗しました");
-    });
+    let reloadMessages = function() {
+      let last_message_id = $('.MessageBox:last').data("message-id") || 0;
+      $.ajax({
+        url: "api/messages",
+        type: 'get',
+        dataType: 'json',
+        data: {id: last_message_id}
+      })
+      .done(function(messages) {
+        console.log('success');
+      })
+      .fail(function() {
+        alert('error');
+      });
+    };
+  
   });
+  setInterval(reloadMessages, 7000);
 });
