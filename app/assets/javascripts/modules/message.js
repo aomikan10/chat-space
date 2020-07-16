@@ -44,6 +44,7 @@ $(function(){
     e.preventDefault();
     let formData = new FormData(this);
     let url = $(this).attr('action');
+
     $.ajax({
       url: url,
       type: "POST",
@@ -57,7 +58,7 @@ $(function(){
       $('.MessageField').append(html);      
       $('form')[0].reset();
       $('.MessageField').animate({ scrollTop: $('.MessageField')[0].scrollHeight});
-      $('.Form__submit').prop("disabled", false);
+      $('.Form-btn').removeAttr('disabled');
     })
     .fail(function() {
       alert("メッセージ送信に失敗しました");
